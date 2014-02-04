@@ -18,16 +18,14 @@ var Navigation = React.createClass({
     this.props.itemSelected(item);
   },
   render: function() {
-    var _this = this;
-
     var items = this.props.items.map(function(item) {
       return (
         <NavigationItem key={item.data.id}
           item={item}
-          itemSelected={_this.setSelectedItem}
-          selected={item.data.url === _this.props.activeUrl} />
+          itemSelected={this.setSelectedItem}
+          selected={item.data.url === this.props.activeUrl} />
       );
-    });
+    }, this);
 
     return (
       <div className="navigation">
