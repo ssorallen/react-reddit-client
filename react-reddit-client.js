@@ -20,9 +20,10 @@ var Navigation = React.createClass({
   render: function() {
     var items = this.props.items.map(function(item) {
       return (
-        <NavigationItem key={item.data.id}
+        <NavigationItem
           item={item}
           itemSelected={this.setSelectedItem}
+          key={item.data.id}
           selected={item.data.url === this.props.activeUrl} />
       );
     }, this);
@@ -98,7 +99,8 @@ var App = React.createClass({
     return (
       <div>
         <h1>{this.state.title}</h1>
-        <Navigation activeUrl={this.state.activeNavigationUrl}
+        <Navigation
+          activeUrl={this.state.activeNavigationUrl}
           items={this.state.navigationItems}
           itemSelected={this.setSelectedItem} />
         <StoryList items={this.state.storyItems} />
@@ -109,7 +111,8 @@ var App = React.createClass({
     var _this = this;
     var cbname = "fn" + Date.now();
     var script = document.createElement("script");
-    script.src = "http://www.reddit.com/" + item.data.url + ".json?sort=top&t=month&jsonp=" + cbname;
+    script.src = "http://www.reddit.com/" + item.data.url +
+      ".json?sort=top&t=month&jsonp=" + cbname;
 
     window[cbname] = function(jsonData) {
       _this.setState({storyItems: jsonData.data.children});
