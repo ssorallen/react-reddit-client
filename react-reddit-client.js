@@ -18,15 +18,20 @@ var Navigation = React.createClass({
     this.props.itemSelected(item);
   },
   render: function() {
-    var items = this.props.items.map(function(item) {
-      return (
-        <NavigationItem
-          item={item}
-          itemSelected={this.setSelectedItem}
-          key={item.data.id}
-          selected={item.data.url === this.props.activeUrl} />
-      );
-    }, this);
+    var items = this.props.items
+      .sort(function(a, b) {
+        // Sort by # of subscribers in descending order
+        return b.data.subscribers - a.data.subscribers;
+      })
+      .map(function(item) {
+        return (
+          <NavigationItem
+            item={item}
+            itemSelected={this.setSelectedItem}
+            key={item.data.id}
+            selected={item.data.url === this.props.activeUrl} />
+        );
+      }, this);
 
     return (
       <div className="navigation">
