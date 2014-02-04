@@ -123,6 +123,7 @@ var App = React.createClass({
 
     this.setState({
       activeNavigationUrl: item.data.url,
+      storyItems: [],
       title: item.data.display_name
     });
   }
