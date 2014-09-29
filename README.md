@@ -1,11 +1,25 @@
 react-reddit-client
 ===================
 
-A simple Reddit client written with [React JS](https://facebook.github.io/react/).
-This is a recreation of the
-[Montage JS tutorial](http://montagejs.org/docs/tutorial-reddit-client-with-montagejs.html),
-and the code here is intentionally similar to make for a good comparison.
+A simple Reddit client written with [React.js](https://facebook.github.io/react/).
 
 ## Demo
 
 http://ssorallen.com/react-reddit-client/
+
+### Running Locally
+
+1. Clone the repo
+2. Run a webserver in the project directory
+
+        python -m SimpleHTTPServer
+3. Visit the demo at [localhost:8000](http://localhost:8000)
+
+## Framework Comparisons
+
+This demo was originally created by the Montage team, and that version
+is linked below. The demo was recreated in other frameworks to compare
+various approaches in JavaScript app frameworks.
+
+* [Montage](http://montagejs.org/docs/tutorial-reddit-client-with-montagejs.html)
+* [Polymer](https://github.com/ssorallen/polymer-reddit-client)
