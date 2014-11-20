@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var NavigationItem = React.createClass({
   onClick: function() {
     this.props.itemSelected(this.props.item);
@@ -48,7 +46,7 @@ var StoryList = React.createClass({
   render: function() {
     var storyNodes = this.props.items.map(function(item) {
       return (
-        <tr>
+        <tr key={item.data.id}>
           <td>
             <p className="score">{item.data.score}</p>
           </td>
@@ -134,7 +132,7 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(
+React.render(
   <App />,
   document.getElementById("app")
 );
