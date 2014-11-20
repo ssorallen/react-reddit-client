@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var NavigationItem = React.createClass({
   onClick: function() {
     this.props.itemSelected(this.props.item);
@@ -134,7 +132,7 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(
+React.render(
   <App />,
   document.getElementById("app")
 );
