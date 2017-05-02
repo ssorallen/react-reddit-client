@@ -10,10 +10,13 @@ http://www.ssorallen.com/react-reddit-client/
 ### Running Locally
 
 1. Clone the repo
-2. Run a webserver in the project directory
+2. Install dependencies
 
-        python -m SimpleHTTPServer
-3. Visit the demo at [localhost:8000](http://localhost:8000)
+        $ yarn install
+3. Run the project
+
+        $ yarn start
+3. Visit the demo at [localhost:3000](http://localhost:3000)
 
 ## Framework Comparisons
 
