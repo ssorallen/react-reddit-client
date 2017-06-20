@@ -18,7 +18,7 @@ export default class App extends React.Component {
     var _this = this;
     var cbname = "fn" + Date.now();
     var script = document.createElement("script");
-    script.src = "http://www.reddit.com/reddits.json?jsonp=" + cbname;
+    script.src = "https://www.reddit.com/reddits.json?jsonp=" + cbname;
 
     window[cbname] = function(jsonData) {
       _this.setState({
@@ -34,7 +34,7 @@ export default class App extends React.Component {
     var _this = this;
     var cbname = "fn" + Date.now();
     var script = document.createElement("script");
-    script.src = "http://www.reddit.com/" + item.data.url +
+    script.src = "https://www.reddit.com/" + item.data.url +
       ".json?sort=top&t=month&jsonp=" + cbname;
 
     window[cbname] = function(jsonData) {

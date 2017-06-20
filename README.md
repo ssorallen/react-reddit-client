@@ -24,5 +24,5 @@ This demo was originally created by the Montage team, and that version
 is linked below. The demo was recreated in other frameworks to compare
 various approaches in JavaScript app frameworks.
 
-* [Montage](http://montagejs.org/docs/tutorial-reddit-client-with-montagejs.html)
+* [Montage](http://docs.montagestudio.com/montagejs/tutorial-reddit-client-with-montagejs.html)
 * [Polymer](https://github.com/ssorallen/polymer-reddit-client)
