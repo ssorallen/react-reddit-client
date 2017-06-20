@@ -16,15 +16,16 @@ export default class App extends React.Component {
 
   componentDidMount() {
     var _this = this;
-    var cbname = "fn" + Date.now();
+    var cbname = `fn${Date.now()}`;
     var script = document.createElement("script");
-    script.src = "https://www.reddit.com/reddits.json?jsonp=" + cbname;
+    script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
 
     window[cbname] = function(jsonData) {
       _this.setState({
         navigationItems: jsonData.data.children
       });
       delete window[cbname];
+      document.head.removeChild(script);
     };
 
     document.head.appendChild(script);
@@ -32,14 +33,14 @@ export default class App extends React.Component {
 
   setSelectedItem = (item) => {
     var _this = this;
-    var cbname = "fn" + Date.now();
+    var cbname = `fn${Date.now()}`;
     var script = document.createElement("script");
-    script.src = "https://www.reddit.com/" + item.data.url +
-      ".json?sort=top&t=month&jsonp=" + cbname;
+    script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
 
     window[cbname] = function(jsonData) {
       _this.setState({storyItems: jsonData.data.children});
       delete window[cbname];
+      document.head.removeChild(script);
     };
 
     document.head.appendChild(script);
