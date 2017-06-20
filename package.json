@@ -1,5 +1,5 @@
 {
-  "name": "react-reddit-client-2",
+  "name": "react-reddit-client",
   "version": "0.2.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
   "devDependencies": {
     "react-scripts": "0.9.5"
   },
+  "homepage": "https://ssorallen.github.io/react-reddit-client",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
