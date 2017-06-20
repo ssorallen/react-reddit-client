@@ -5,7 +5,7 @@ A simple Reddit client written with [React.js](https://facebook.github.io/react/
 
 ## Demo
 
-http://www.ssorallen.com/react-reddit-client/
+https://ssorallen.github.io/react-reddit-client/
 
 ### Running Locally
 
