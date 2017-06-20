@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+body {
+  background-color: #2d2d2d;
+  font-family: 'Lato';
+  color: white;
+  font-weight: 300;
+}
+
+h1 {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 42px;
+}

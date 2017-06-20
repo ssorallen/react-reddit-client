@@ -5,15 +5,18 @@ A simple Reddit client written with [React.js](https://facebook.github.io/react/
 
 ## Demo
 
-http://www.ssorallen.com/react-reddit-client/
+https://ssorallen.github.io/react-reddit-client/
 
 ### Running Locally
 
 1. Clone the repo
-2. Run a webserver in the project directory
+2. Install dependencies
 
-        python -m SimpleHTTPServer
-3. Visit the demo at [localhost:8000](http://localhost:8000)
+        $ yarn install
+3. Run the project
+
+        $ yarn start
+3. Visit the demo at [localhost:3000](http://localhost:3000)
 
 ## Framework Comparisons
 
@@ -21,5 +24,5 @@ This demo was originally created by the Montage team, and that version
 is linked below. The demo was recreated in other frameworks to compare
 various approaches in JavaScript app frameworks.
 
-* [Montage](http://montagejs.org/docs/tutorial-reddit-client-with-montagejs.html)
+* [Montage](http://docs.montagestudio.com/montagejs/tutorial-reddit-client-with-montagejs.html)
 * [Polymer](https://github.com/ssorallen/polymer-reddit-client)
