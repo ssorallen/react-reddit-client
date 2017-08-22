@@ -1,11 +1,20 @@
+/* @flow */
 import './App.css';
+import {Story, Subreddit} from './types';
 import Navigation from './Navigation';
 import React from 'react';
 import StoryList from './StoryList';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+interface State {
+  activeNavigationUrl: string;
+  navigationItems: Array<Subreddit>;
+  storyItems: Array<Story>;
+  title: string;
+}
+
+export default class App extends React.Component<{}, State> {
+  constructor() {
+    super();
     this.state = {
       activeNavigationUrl: "",
       navigationItems: [],
@@ -25,13 +34,15 @@ export default class App extends React.Component {
         navigationItems: jsonData.data.children
       });
       delete window[cbname];
+      // $FlowFixMe
       document.head.removeChild(script);
     };
 
+    // $FlowFixMe
     document.head.appendChild(script);
   }
 
-  setSelectedItem = (item) => {
+  setSelectedItem = (item: Subreddit) => {
     var _this = this;
     var cbname = `fn${Date.now()}`;
     var script = document.createElement("script");
@@ -40,9 +51,11 @@ export default class App extends React.Component {
     window[cbname] = function(jsonData) {
       _this.setState({storyItems: jsonData.data.children});
       delete window[cbname];
+      // $FlowFixMe
       document.head.removeChild(script);
     };
 
+    // $FlowFixMe
     document.head.appendChild(script);
 
     this.setState({

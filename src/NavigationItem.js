@@ -1,6 +1,13 @@
+/* @flow */
 import React from 'react';
+import {Subreddit} from './types';
 
-export default class NavigationItem extends React.Component {
+interface Props {
+  item: Subreddit;
+  itemSelected: (item: Subreddit) => void;
+}
+
+export default class NavigationItem extends React.Component<Props> {
   onClick = () => {
     this.props.itemSelected(this.props.item);
   };

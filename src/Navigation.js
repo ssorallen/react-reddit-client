@@ -1,9 +1,17 @@
+/* @flow */
 import './Navigation.css';
 import NavigationItem from './NavigationItem';
 import React from 'react';
+import {Subreddit} from './types';
 
-export default class Navigation extends React.Component {
-  setSelectedItem = (item) => {
+interface Props {
+  activeUrl: string;
+  items: Array<Subreddit>;
+  itemSelected: (item: Subreddit) => void;
+}
+
+export default class Navigation extends React.Component<Props> {
+  setSelectedItem = (item: Subreddit) => {
     this.props.itemSelected(item);
   };
 

@@ -7,14 +7,16 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "flow-bin": "^0.53.1",
     "gh-pages": "^1.0.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "^1.0.11"
   },
   "homepage": "https://ssorallen.github.io/react-reddit-client",
   "scripts": {
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
+    "flow": "flow",
     "predeploy": "npm run build",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"

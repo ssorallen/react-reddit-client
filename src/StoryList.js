@@ -1,7 +1,13 @@
+/* @flow */
 import './StoryList.css';
 import React from 'react';
+import {Story} from './types';
 
-export default class StoryList extends React.Component {
+interface Props {
+  items: Array<Story>;
+}
+
+export default class StoryList extends React.Component<Props> {
   render() {
     return (
       <table>
