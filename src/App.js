@@ -1,6 +1,6 @@
 /* @flow */
 import './App.css';
-import {Story, Subreddit} from './types';
+import {ResponseStories, ResponseSubreddits, Story, Subreddit} from './types';
 import Navigation from './Navigation';
 import React from 'react';
 import StoryList from './StoryList';
@@ -29,7 +29,7 @@ export default class App extends React.Component<{}, State> {
     var script = document.createElement("script");
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
 
-    window[cbname] = function(jsonData) {
+    window[cbname] = function(jsonData: ResponseSubreddits) {
       _this.setState({
         navigationItems: jsonData.data.children
       });
@@ -48,7 +48,7 @@ export default class App extends React.Component<{}, State> {
     var script = document.createElement("script");
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
 
-    window[cbname] = function(jsonData) {
+    window[cbname] = function(jsonData: ResponseStories) {
       _this.setState({storyItems: jsonData.data.children});
       delete window[cbname];
       // $FlowFixMe

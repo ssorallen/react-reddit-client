@@ -21,3 +21,17 @@ export interface Subreddit {
   };
   kind: 't5';
 }
+
+export interface ResponseStories {
+  data: {
+    children: Array<Story>;
+  };
+  kind: 'Listing';
+}
+
+export interface ResponseSubreddits {
+  data: {
+    children: Array<Subreddit>;
+  };
+  kind: 'Listing';
+}
