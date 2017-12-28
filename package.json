@@ -7,7 +7,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
-    "flow-bin": "^0.53.1",
+    "flow-bin": "^0.62.0",
     "gh-pages": "^1.0.0",
     "react-scripts": "^1.0.11"
   },
