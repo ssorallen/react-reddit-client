@@ -1,6 +1,6 @@
 /* @flow */
 import './App.css';
-import {ResponseStories, ResponseSubreddits, Story, Subreddit} from './types';
+import { ResponseStories, ResponseSubreddits, Story, Subreddit } from './types';
 import Navigation from './Navigation';
 import React from 'react';
 import StoryList from './StoryList';
@@ -16,22 +16,22 @@ export default class App extends React.Component<{}, State> {
   constructor() {
     super();
     this.state = {
-      activeNavigationUrl: "",
+      activeNavigationUrl: '',
       navigationItems: [],
       storyItems: [],
-      title: "Please select a sub"
+      title: 'Please select a sub',
     };
   }
 
   componentDidMount() {
     var _this = this;
     var cbname = `fn${Date.now()}`;
-    var script = document.createElement("script");
+    var script = document.createElement('script');
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
 
     window[cbname] = function(jsonData: ResponseSubreddits) {
       _this.setState({
-        navigationItems: jsonData.data.children
+        navigationItems: jsonData.data.children,
       });
       delete window[cbname];
       // $FlowFixMe
@@ -45,11 +45,11 @@ export default class App extends React.Component<{}, State> {
   setSelectedItem = (item: Subreddit) => {
     var _this = this;
     var cbname = `fn${Date.now()}`;
-    var script = document.createElement("script");
+    var script = document.createElement('script');
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
 
     window[cbname] = function(jsonData: ResponseStories) {
-      _this.setState({storyItems: jsonData.data.children});
+      _this.setState({ storyItems: jsonData.data.children });
       delete window[cbname];
       // $FlowFixMe
       document.head.removeChild(script);
@@ -61,7 +61,7 @@ export default class App extends React.Component<{}, State> {
     this.setState({
       activeNavigationUrl: item.data.url,
       storyItems: [],
-      title: item.data.display_name
+      title: item.data.display_name,
     });
   };
 
@@ -83,15 +83,22 @@ export default class App extends React.Component<{}, State> {
           <svg
             aria-hidden="true"
             height="80"
-            style={{fill: '#4e5053', color: '#2d2d2d', position: 'absolute', top: 0, border: 'none', right: 0}}
+            style={{
+              fill: '#4e5053',
+              color: '#2d2d2d',
+              position: 'absolute',
+              top: 0,
+              border: 'none',
+              right: 0,
+            }}
             viewBox="0 0 250 250"
             width="80">
-            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" />
             <path
               class="octo-arm"
               d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
               fill="currentColor"
-              style={{'transform-origin': '130px 106px'}}
+              style={{ 'transform-origin': '130px 106px' }}
             />
             <path
               class="octo-body"
