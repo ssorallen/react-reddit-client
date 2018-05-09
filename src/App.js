@@ -21,6 +21,8 @@ interface State {
 }
 
 export default class App extends React.Component<{}, State> {
+  storiesCallbackName: ?string;
+
   constructor() {
     super();
     this.state = {
@@ -32,39 +34,49 @@ export default class App extends React.Component<{}, State> {
   }
 
   componentDidMount() {
-    const _this = this;
+    const documentHead = document.head;
+    if (documentHead == null) throw new Error('No <head> to use for script injection.');
+
     const cbname = `fn${Date.now()}`;
     const script = document.createElement('script');
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
-
-    window[cbname] = function(jsonData: ResponseSubreddits) {
-      _this.setState({
+    window[cbname] = (jsonData: ResponseSubreddits) => {
+      this.setState({
         navigationItems: jsonData.data.children,
       });
       delete window[cbname];
-      // $FlowFixMe
-      document.head.removeChild(script);
+      documentHead.removeChild(script);
     };
 
-    // $FlowFixMe
-    document.head.appendChild(script);
+    // Start the JSONP request by injecting the `script` into the document.
+    documentHead.appendChild(script);
   }
 
   setSelectedItem = (item: Subreddit) => {
-    const _this = this;
-    const cbname = `fn${Date.now()}`;
+    const documentHead = document.head;
+    if (documentHead == null) throw new Error('No <head> to use for script injection.');
+
+    const cbname = (this.storiesCallbackName = `fn${Date.now()}`);
     const script = document.createElement('script');
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
+    window[cbname] = (jsonData: ResponseStories) => {
+      // Use the response only if this is still the latest script to run. If the user clicked
+      // another Subreddit in the meantime, the `cbname` will be different and this response should
+      // be ignored.
+      //
+      // The `<script>` must stay in the document even if the response is not needed because
+      // otherwise the JSONP request will try to call a nonexistent script. Leave it in the `<head>`
+      // so it can clean up after itself but make it do nothing other than clean up.
+      if (cbname === this.storiesCallbackName) {
+        this.setState({ storyItems: jsonData.data.children });
+      }
 
-    window[cbname] = function(jsonData: ResponseStories) {
-      _this.setState({ storyItems: jsonData.data.children });
       delete window[cbname];
-      // $FlowFixMe
-      document.head.removeChild(script);
+      documentHead.removeChild(script);
     };
 
-    // $FlowFixMe
-    document.head.appendChild(script);
+    // Start the JSONP request by setting the `src` of the injected script.
+    documentHead.appendChild(script);
 
     this.setState({
       activeNavigationUrl: item.data.url,
