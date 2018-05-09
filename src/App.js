@@ -32,9 +32,9 @@ export default class App extends React.Component<{}, State> {
   }
 
   componentDidMount() {
-    var _this = this;
-    var cbname = `fn${Date.now()}`;
-    var script = document.createElement('script');
+    const _this = this;
+    const cbname = `fn${Date.now()}`;
+    const script = document.createElement('script');
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
 
     window[cbname] = function(jsonData: ResponseSubreddits) {
@@ -51,9 +51,9 @@ export default class App extends React.Component<{}, State> {
   }
 
   setSelectedItem = (item: Subreddit) => {
-    var _this = this;
-    var cbname = `fn${Date.now()}`;
-    var script = document.createElement('script');
+    const _this = this;
+    const cbname = `fn${Date.now()}`;
+    const script = document.createElement('script');
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
 
     window[cbname] = function(jsonData: ResponseStories) {

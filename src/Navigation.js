@@ -16,7 +16,7 @@ export default class Navigation extends React.Component<Props> {
   };
 
   render() {
-    var items = this.props.items
+    const items = this.props.items
       .sort(
         (a, b) =>
           // Sort by # of subscribers in descending order
