@@ -1,7 +1,7 @@
 .score {
   font-size: 36px;
   margin: 15px;
-  color: #afb3b9;
+  color: var(--text-secondary);
 }
 
 .title {
@@ -10,7 +10,7 @@
 
 .title a {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .author {
@@ -18,5 +18,5 @@
 }
 
 .author span {
-  color: #afb3b9;
+  color: var(--text-secondary);
 }
