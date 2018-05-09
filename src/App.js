@@ -6,9 +6,17 @@ import React from 'react';
 import StoryList from './StoryList';
 
 interface State {
+  // The active Reddit URL whose items are being rendered.
   activeNavigationUrl: string;
+
+  // List of possible Subreddits for the user to choose in the right navigation.
   navigationItems: Array<Subreddit>;
+
+  // The stories for the current `activeNavigationUrl` whose title and other info are shown once the
+  // user navigates to a Subreddit.
   storyItems: Array<Story>;
+
+  // Name of the current Subreddit being viewed. This is shown at the top of the page.
   title: string;
 }
 

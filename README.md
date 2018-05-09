@@ -1,7 +1,9 @@
 react-reddit-client
 ===================
 
-A simple Reddit client written with [React.js](https://facebook.github.io/react/).
+A simple Reddit client written with [React](https://facebook.github.io/react/). This project is run
+and built using [create-react-app](https://github.com/facebook/create-react-app) in order to keep
+things simple to maintain.
 
 ## Demo
 
@@ -20,9 +22,8 @@ https://ssorallen.github.io/react-reddit-client/
 
 ## Framework Comparisons
 
-This demo was originally created by the Montage team, and that version
-is linked below. The demo was recreated in other frameworks to compare
-various approaches in JavaScript app frameworks.
+This demo was originally created by the Montage team, and that version is linked below. The demo was
+recreated in other frameworks to compare various approaches in JavaScript app frameworks.
 
 * [Montage](http://docs.montagestudio.com/montagejs/tutorial-reddit-client-with-montagejs.html)
 * [Polymer](https://github.com/ssorallen/polymer-reddit-client)

@@ -2,7 +2,7 @@
 import './Navigation.css';
 import NavigationItem from './NavigationItem';
 import React from 'react';
-import {Subreddit} from './types';
+import { Subreddit } from './types';
 
 interface Props {
   activeUrl: string;
@@ -17,25 +17,24 @@ export default class Navigation extends React.Component<Props> {
 
   render() {
     var items = this.props.items
-      .sort((a, b) =>
-        // Sort by # of subscribers in descending order
-        b.data.subscribers - a.data.subscribers
+      .sort(
+        (a, b) =>
+          // Sort by # of subscribers in descending order
+          b.data.subscribers - a.data.subscribers
       )
-      .map(item =>
+      .map(item => (
         <NavigationItem
           item={item}
           itemSelected={this.setSelectedItem}
           key={item.data.id}
           selected={item.data.url === this.props.activeUrl}
         />
-      );
+      ));
 
     return (
       <div className="navigation">
         <div className="header">Navigation</div>
-        <ul>
-          {items}
-        </ul>
+        <ul>{items}</ul>
       </div>
     );
   }
