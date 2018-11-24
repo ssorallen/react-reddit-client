@@ -8,16 +8,14 @@ interface Props {
   selected: boolean;
 }
 
-export default class NavigationItem extends React.Component<Props> {
-  onClick = () => {
-    this.props.itemSelected(this.props.item);
-  };
-
-  render() {
-    return (
-      <li onClick={this.onClick} className={this.props.selected ? 'selected' : ''}>
-        {this.props.item.data.display_name}
-      </li>
-    );
-  }
+export default function NavigationItem(props: Props) {
+  return (
+    <li
+      onClick={() => {
+        props.itemSelected(props.item);
+      }}
+      className={props.selected ? 'selected' : ''}>
+      {props.item.data.display_name}
+    </li>
+  );
 }
