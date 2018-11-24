@@ -3,6 +3,7 @@ import './Navigation.css';
 import NavigationItem from './NavigationItem';
 import React from 'react';
 import { Subreddit } from './types';
+import memo from 'memoize-one';
 
 interface Props {
   activeUrl: string;
@@ -15,26 +16,28 @@ export default class Navigation extends React.Component<Props> {
     this.props.itemSelected(item);
   };
 
-  render() {
-    const items = this.props.items
-      .sort(
-        (a, b) =>
-          // Sort by # of subscribers in descending order
-          b.data.subscribers - a.data.subscribers
-      )
-      .map(item => (
-        <NavigationItem
-          item={item}
-          itemSelected={this.setSelectedItem}
-          key={item.data.id}
-          selected={item.data.url === this.props.activeUrl}
-        />
-      ));
+  sortedItems = memo(items =>
+    items.sort(
+      (a, b) =>
+        // Sort by # of subscribers in descending order
+        b.data.subscribers - a.data.subscribers
+    )
+  );
 
+  render() {
     return (
       <div className="navigation">
         <div className="header">Navigation</div>
-        <ul>{items}</ul>
+        <ul>
+          {this.sortedItems(this.props.items).map(item => (
+            <NavigationItem
+              item={item}
+              itemSelected={this.setSelectedItem}
+              key={item.data.id}
+              selected={item.data.url === this.props.activeUrl}
+            />
+          ))}
+        </ul>
       </div>
     );
   }
