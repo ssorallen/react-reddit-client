@@ -9,6 +9,9 @@ things simple to maintain.
 
 https://ssorallen.github.io/react-reddit-client/
 
+Screenshot of the interface:
+![](./react-reddit-client%20Interface.png)
+
 ### Running Locally
 
 1. Clone the repo
