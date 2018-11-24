@@ -87,7 +87,7 @@ export default class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <p className="creator">
           Created by <a href="https://github.com/ssorallen">ssorallen</a>
           <br />
@@ -103,7 +103,7 @@ export default class App extends React.Component<{}, State> {
           itemSelected={this.setSelectedItem}
         />
         <StoryList items={this.state.storyItems} />
-      </div>
+      </React.Fragment>
     );
   }
 }
