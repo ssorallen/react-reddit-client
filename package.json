@@ -3,13 +3,13 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "prettier": "^1.12.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
   "devDependencies": {
     "flow-bin": "^0.86.0",
     "gh-pages": "^1.0.0",
+    "prettier": "^1.12.1",
     "react-scripts": "^1.1.4"
   },
   "homepage": "https://ssorallen.github.io/react-reddit-client",
