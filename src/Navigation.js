@@ -6,7 +6,7 @@ import { Subreddit } from './types';
 import memo from 'memoize-one';
 
 interface Props {
-  activeUrl: string;
+  activeUrl: ?string;
   items: Array<Subreddit>;
   itemSelected: (item: Subreddit) => void;
 }

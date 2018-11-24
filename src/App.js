@@ -6,18 +6,15 @@ import React from 'react';
 import StoryList from './StoryList';
 
 interface State {
-  // The active Reddit URL whose items are being rendered.
-  activeNavigationUrl: string;
-
   // List of possible Subreddits for the user to choose in the right navigation.
   navigationItems: Array<Subreddit>;
 
-  // The stories for the current `activeNavigationUrl` whose title and other info are shown once the
-  // user navigates to a Subreddit.
+  // The stories for the current selected Subreddit whose title and other info are shown once the
+  // user navigates to one.
   storyItems: Array<Story>;
 
-  // Name of the current Subreddit being viewed. This is shown at the top of the page.
-  title: string;
+  // Current Subreddit being viewed. Its title is shown at the top of the page
+  selectedSubreddit: ?Subreddit;
 }
 
 export default class App extends React.Component<{}, State> {
@@ -26,10 +23,9 @@ export default class App extends React.Component<{}, State> {
   constructor() {
     super();
     this.state = {
-      activeNavigationUrl: '',
       navigationItems: [],
+      selectedSubreddit: null,
       storyItems: [],
-      title: 'Please select a sub',
     };
   }
 
@@ -79,9 +75,8 @@ export default class App extends React.Component<{}, State> {
     documentHead.appendChild(script);
 
     this.setState({
-      activeNavigationUrl: item.data.url,
+      selectedSubreddit: item,
       storyItems: [],
-      title: item.data.display_name,
     });
   };
 
@@ -96,9 +91,15 @@ export default class App extends React.Component<{}, State> {
             ssorallen/react-reddit-client
           </a>
         </p>
-        <h1>{this.state.title}</h1>
+        <h1>
+          {this.state.selectedSubreddit == null
+            ? 'Please select a sub'
+            : this.state.selectedSubreddit.data.display_name}
+        </h1>
         <Navigation
-          activeUrl={this.state.activeNavigationUrl}
+          activeUrl={
+            this.state.selectedSubreddit == null ? null : this.state.selectedSubreddit.data.url
+          }
           items={this.state.navigationItems}
           itemSelected={this.setSelectedItem}
         />
