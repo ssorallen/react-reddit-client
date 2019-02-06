@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "memoize-one": "^5.0.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "flow-bin": "^0.92.1",
