@@ -5,29 +5,23 @@ import NavigationItem from './NavigationItem';
 import { Subreddit } from './types';
 
 type Props = {
-  activeUrl: ?string;
-  items: Array<Subreddit>;
-  itemSelected: (item: Subreddit) => void;
-}
+  activeUrl: ?string,
+  items: Array<Subreddit>,
+  itemSelected: (item: Subreddit) => void,
+};
 
 export default function Navigation(props: Props) {
-  const setSelectedItem = useCallback(
-    (item: Subreddit) => {
-      props.itemSelected(item);
-    },
-    []
-  );
+  const setSelectedItem = useCallback((item: Subreddit) => {
+    props.itemSelected(item);
+  }, []);
 
-  const sortedItems = useMemo(
-    () => {
-      return props.items.slice().sort(
-        (a, b) =>
-          // Sort by # of subscribers in descending order
-          b.data.subscribers - a.data.subscribers
-      );
-    },
-    [props.items]
-  );
+  const sortedItems = useMemo(() => {
+    return props.items.slice().sort(
+      (a, b) =>
+        // Sort by # of subscribers in descending order
+        b.data.subscribers - a.data.subscribers
+    );
+  }, [props.items]);
 
   return (
     <div className="navigation">
