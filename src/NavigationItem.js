@@ -2,11 +2,11 @@
 import React from 'react';
 import { Subreddit } from './types';
 
-interface Props {
-  item: Subreddit;
-  itemSelected: (item: Subreddit) => void;
-  selected: boolean;
-}
+type Props = {
+  item: Subreddit,
+  itemSelected: (item: Subreddit) => void,
+  selected: boolean,
+};
 
 export default function NavigationItem(props: Props) {
   return (
