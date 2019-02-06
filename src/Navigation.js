@@ -1,9 +1,8 @@
 /* @flow */
 import './Navigation.css';
+import React, { useCallback, useMemo } from 'react';
 import NavigationItem from './NavigationItem';
-import React from 'react';
 import { Subreddit } from './types';
-import memo from 'memoize-one';
 
 type Props = {
   activeUrl: ?string;
@@ -11,35 +10,38 @@ type Props = {
   itemSelected: (item: Subreddit) => void;
 }
 
-export default class Navigation extends React.Component<Props> {
-  setSelectedItem = (item: Subreddit) => {
-    this.props.itemSelected(item);
-  };
+export default function Navigation(props: Props) {
+  const setSelectedItem = useCallback(
+    (item: Subreddit) => {
+      props.itemSelected(item);
+    },
+    []
+  );
 
-  sortedItems = memo((items: Array<Subreddit>) => {
-    const sortedItems: Array<Subreddit> = items.slice().sort(
-      (a, b) =>
-        // Sort by # of subscribers in descending order
-        b.data.subscribers - a.data.subscribers
-    );
-    return sortedItems;
-  })
+  const sortedItems = useMemo(
+    () => {
+      return props.items.slice().sort(
+        (a, b) =>
+          // Sort by # of subscribers in descending order
+          b.data.subscribers - a.data.subscribers
+      );
+    },
+    [props.items]
+  );
 
-  render() {
-    return (
-      <div className="navigation">
-        <div className="header">Navigation</div>
-        <ul>
-          {this.sortedItems(this.props.items).map(item => (
-            <NavigationItem
-              item={item}
-              itemSelected={this.setSelectedItem}
-              key={item.data.id}
-              selected={item.data.url === this.props.activeUrl}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className="navigation">
+      <div className="header">Navigation</div>
+      <ul>
+        {sortedItems.map(item => (
+          <NavigationItem
+            item={item}
+            itemSelected={setSelectedItem}
+            key={item.data.id}
+            selected={item.data.url === props.activeUrl}
+          />
+        ))}
+      </ul>
+    </div>
+  );
 }

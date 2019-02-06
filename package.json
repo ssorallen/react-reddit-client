@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "memoize-one": "^5.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
