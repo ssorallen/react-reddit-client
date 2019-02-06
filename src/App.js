@@ -5,7 +5,7 @@ import Navigation from './Navigation';
 import React from 'react';
 import StoryList from './StoryList';
 
-interface State {
+type State = {
   // List of possible Subreddits for the user to choose in the right navigation.
   navigationItems: Array<Subreddit>;
 

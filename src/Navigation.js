@@ -5,7 +5,7 @@ import React from 'react';
 import { Subreddit } from './types';
 import memo from 'memoize-one';
 
-interface Props {
+type Props = {
   activeUrl: ?string;
   items: Array<Subreddit>;
   itemSelected: (item: Subreddit) => void;
@@ -16,13 +16,14 @@ export default class Navigation extends React.Component<Props> {
     this.props.itemSelected(item);
   };
 
-  sortedItems = memo(items =>
-    items.sort(
+  sortedItems = memo((items: Array<Subreddit>) => {
+    const sortedItems: Array<Subreddit> = items.slice().sort(
       (a, b) =>
         // Sort by # of subscribers in descending order
         b.data.subscribers - a.data.subscribers
-    )
-  );
+    );
+    return sortedItems;
+  })
 
   render() {
     return (
