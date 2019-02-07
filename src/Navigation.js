@@ -1,6 +1,7 @@
 /* @flow */
+
 import './Navigation.css';
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import NavigationItem from './NavigationItem';
 import { Subreddit } from './types';
 
@@ -11,17 +12,15 @@ type Props = {
 };
 
 export default function Navigation(props: Props) {
-  const setSelectedItem = useCallback((item: Subreddit) => {
-    props.itemSelected(item);
-  }, []);
-
-  const sortedItems = useMemo(() => {
-    return props.items.slice().sort(
-      (a, b) =>
-        // Sort by # of subscribers in descending order
-        b.data.subscribers - a.data.subscribers
-    );
-  }, [props.items]);
+  const sortedItems = useMemo(
+    () =>
+      props.items.slice().sort(
+        (a, b) =>
+          // Sort by # of subscribers in descending order
+          b.data.subscribers - a.data.subscribers
+      ),
+    [props.items]
+  );
 
   return (
     <div className="navigation">
@@ -30,7 +29,7 @@ export default function Navigation(props: Props) {
         {sortedItems.map(item => (
           <NavigationItem
             item={item}
-            itemSelected={setSelectedItem}
+            itemSelected={props.itemSelected}
             key={item.data.id}
             selected={item.data.url === props.activeUrl}
           />
