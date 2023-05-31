@@ -1,7 +1,7 @@
 /* @flow */
-import './StoryList.css';
-import React from 'react';
-import { Story } from './types';
+import "./StoryList.css";
+import React from "react";
+import { Story } from "./types";
 
 interface Props {
   items: Array<Story>;
@@ -15,7 +15,7 @@ export default function StoryList(props: Props) {
   return (
     <table>
       <tbody>
-        {props.items.map(item => (
+        {props.items.map((item) => (
           <tr key={item.data.id}>
             <td>
               <p className="score">{item.data.score}</p>

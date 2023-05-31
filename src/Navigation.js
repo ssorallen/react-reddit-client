@@ -1,9 +1,9 @@
 /* @flow */
 
-import './Navigation.css';
-import React, { useMemo } from 'react';
-import NavigationItem from './NavigationItem';
-import { Subreddit } from './types';
+import "./Navigation.css";
+import React, { useMemo } from "react";
+import NavigationItem from "./NavigationItem";
+import { Subreddit } from "./types";
 
 type Props = {
   activeUrl: ?string,
@@ -26,7 +26,7 @@ export default function Navigation(props: Props) {
     <div className="navigation">
       <div className="header">Navigation</div>
       <ul>
-        {sortedItems.map(item => (
+        {sortedItems.map((item) => (
           <NavigationItem
             item={item}
             itemSelected={props.itemSelected}

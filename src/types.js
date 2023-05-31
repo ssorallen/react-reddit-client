@@ -8,7 +8,7 @@ export interface Story {
     title: string,
     url: string,
   };
-  kind: 't3';
+  kind: "t3";
 }
 
 export interface Subreddit {
@@ -19,19 +19,19 @@ export interface Subreddit {
     title: string,
     url: string,
   };
-  kind: 't5';
+  kind: "t5";
 }
 
 export interface ResponseStories {
   data: {
     children: Array<Story>,
   };
-  kind: 'Listing';
+  kind: "Listing";
 }
 
 export interface ResponseSubreddits {
   data: {
     children: Array<Subreddit>,
   };
-  kind: 'Listing';
+  kind: "Listing";
 }

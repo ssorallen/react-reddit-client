@@ -1,9 +1,9 @@
 /* @flow */
-import './App.css';
-import React, { useEffect, useReducer } from 'react';
-import { ResponseStories, ResponseSubreddits, Story, Subreddit } from './types';
-import Navigation from './Navigation';
-import StoryList from './StoryList';
+import "./App.css";
+import React, { useEffect, useReducer } from "react";
+import { ResponseStories, ResponseSubreddits, Story, Subreddit } from "./types";
+import Navigation from "./Navigation";
+import StoryList from "./StoryList";
 
 type State = {
   // List of possible Subreddits for the user to choose in the right navigation.
@@ -25,18 +25,18 @@ const initialState = {
 
 function reducer(state: State, action): State {
   switch (action.type) {
-    case 'set-navigation-items':
+    case "set-navigation-items":
       return {
         ...state,
         navigationItems: action.payload,
       };
-    case 'set-selected-subreddit':
+    case "set-selected-subreddit":
       return {
         ...state,
         selectedSubreddit: action.payload,
         storyItems: [],
       };
-    case 'set-story-items':
+    case "set-story-items":
       return {
         ...state,
         storyItems: action.payload,
@@ -56,15 +56,15 @@ export default function App() {
 
   useEffect(() => {
     const documentHead = document.head;
-    if (documentHead == null) throw new Error('No <head> to use for script injection.');
+    if (documentHead == null) throw new Error("No <head> to use for script injection.");
 
     const cbname = `fn${Date.now()}`;
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
     window[cbname] = (jsonData: ResponseSubreddits) => {
       dispatch({
         payload: jsonData.data.children,
-        type: 'set-navigation-items',
+        type: "set-navigation-items",
       });
       delete window[cbname];
       documentHead.removeChild(script);
@@ -76,10 +76,10 @@ export default function App() {
 
   const setSelectedItem = (item: Subreddit) => {
     const documentHead = document.head;
-    if (documentHead == null) throw new Error('No <head> to use for script injection.');
+    if (documentHead == null) throw new Error("No <head> to use for script injection.");
 
     const cbname = (storiesCallbackName = `fn${Date.now()}`);
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
     window[cbname] = (jsonData: ResponseStories) => {
       // Use the response only if this is still the latest script to run. If the user clicked
@@ -92,7 +92,7 @@ export default function App() {
       if (cbname === storiesCallbackName) {
         dispatch({
           payload: jsonData.data.children,
-          type: 'set-story-items',
+          type: "set-story-items",
         });
       }
 
@@ -105,7 +105,7 @@ export default function App() {
 
     dispatch({
       payload: item,
-      type: 'set-selected-subreddit',
+      type: "set-selected-subreddit",
     });
   };
 
@@ -114,12 +114,12 @@ export default function App() {
       <p className="creator">
         Created by <a href="https://github.com/ssorallen">ssorallen</a>
         <br />
-        Code at{' '}
+        Code at{" "}
         <a href="https://github.com/ssorallen/react-reddit-client">ssorallen/react-reddit-client</a>
       </p>
       <h1>
         {state.selectedSubreddit == null
-          ? 'Please select a sub'
+          ? "Please select a sub"
           : state.selectedSubreddit.data.display_name}
       </h1>
       <Navigation

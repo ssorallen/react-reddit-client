@@ -1,6 +1,6 @@
 /* @flow */
-import React from 'react';
-import { Subreddit } from './types';
+import React from "react";
+import { Subreddit } from "./types";
 
 type Props = {
   item: Subreddit,
@@ -14,7 +14,8 @@ export default function NavigationItem(props: Props) {
       onClick={() => {
         props.itemSelected(props.item);
       }}
-      className={props.selected ? 'selected' : ''}>
+      className={props.selected ? "selected" : ""}
+    >
       {props.item.data.display_name}
     </li>
   );
