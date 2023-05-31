@@ -1,9 +1,9 @@
 react-reddit-client
 ===================
 
-A simple Reddit client written with [React](https://facebook.github.io/react/). This project is run
-and built using [create-react-app](https://github.com/facebook/create-react-app) in order to keep
-things simple to maintain.
+A Reddit client written with [React](https://facebook.github.io/react/). This project is run
+and built using [create-react-app](https://github.com/facebook/create-react-app) in order to ease
+maintenance.
 
 ## Demo
 
