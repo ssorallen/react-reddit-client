@@ -9,14 +9,20 @@
 }
 
 .title a {
-  text-decoration: none;
   color: var(--text-primary);
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.author {
-  font-size: 16px;
+.title a:hover {
+  text-decoration: underline;
 }
 
-.author span {
+.author a {
   color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.author a:hover {
+  text-decoration: underline;
 }
