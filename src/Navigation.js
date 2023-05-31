@@ -1,7 +1,7 @@
 /* @flow */
 
 import "./Navigation.css";
-import React, { useMemo } from "react";
+import React from "react";
 import NavigationItem from "./NavigationItem";
 import { Subreddit } from "./types";
 
@@ -12,14 +12,10 @@ type Props = {
 };
 
 export default function Navigation(props: Props) {
-  const sortedItems = useMemo(
-    () =>
-      props.items.slice().sort(
-        (a, b) =>
-          // Sort by # of subscribers in descending order
-          b.data.subscribers - a.data.subscribers
-      ),
-    [props.items]
+  const sortedItems = props.items.slice().sort(
+    (a, b) =>
+      // Sort by # of subscribers in descending order
+      b.data.subscribers - a.data.subscribers
   );
 
   return (
