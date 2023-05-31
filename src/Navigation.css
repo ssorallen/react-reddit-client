@@ -19,7 +19,9 @@
 }
 
 .navigation li {
+  overflow: hidden;
   padding: 15px;
+  text-overflow: ellipsis;
 }
 
 .navigation .selected {
