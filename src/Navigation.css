@@ -4,7 +4,7 @@
   float: right;
 }
 
-.navigation ul {
+.navigation > ul {
   background-color: #37383a;
   cursor: pointer;
   list-style: none;
@@ -18,9 +18,13 @@
   background-color: #4e5053;
 }
 
-.navigation li {
+.navigation > ul > li > a {
+  color: white;
+  display: block;
+  height: 100%;
   overflow: hidden;
   padding: 15px;
+  text-decoration: none;
   text-overflow: ellipsis;
 }
 

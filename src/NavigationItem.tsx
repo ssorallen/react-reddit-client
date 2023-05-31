@@ -1,21 +1,17 @@
+import { NavLink } from "react-router-dom";
 import React from "react";
 import { Subreddit } from "./types";
 
 type Props = {
-  item: Subreddit,
-  itemSelected: (item: Subreddit) => void,
-  selected: boolean,
+  item: Subreddit;
 };
 
-export default function NavigationItem(props: Props) {
+export default function NavigationItem({ item }: Props) {
   return (
-    <li
-      onClick={() => {
-        props.itemSelected(props.item);
-      }}
-      className={props.selected ? "selected" : ""}
-    >
-      {props.item.data.display_name}
+    <li>
+      <NavLink className={({ isActive }) => (isActive ? "selected" : undefined)} to={item.data.url}>
+        {item.data.display_name}
+      </NavLink>
     </li>
   );
 }

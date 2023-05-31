@@ -4,13 +4,11 @@ import NavigationItem from "./NavigationItem";
 import { Subreddit } from "./types";
 
 type Props = {
-  activeUrl: string | null,
-  items: Array<Subreddit>,
-  itemSelected: (item: Subreddit) => void,
+  items: Array<Subreddit> | undefined;
 };
 
 export default function Navigation(props: Props) {
-  const sortedItems = props.items.slice().sort(
+  const sortedItems = props.items?.slice().sort(
     (a, b) =>
       // Sort by # of subscribers in descending order
       b.data.subscribers - a.data.subscribers
@@ -20,13 +18,8 @@ export default function Navigation(props: Props) {
     <div className="navigation">
       <div className="header">Navigation</div>
       <ul>
-        {sortedItems.map((item) => (
-          <NavigationItem
-            item={item}
-            itemSelected={props.itemSelected}
-            key={item.data.id}
-            selected={item.data.url === props.activeUrl}
-          />
+        {sortedItems?.map((item) => (
+          <NavigationItem item={item} key={item.data.id} />
         ))}
       </ul>
     </div>
