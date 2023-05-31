@@ -1,4 +1,3 @@
-/* @flow */
 import "./StoryList.css";
 import React from "react";
 import { Story } from "./types";

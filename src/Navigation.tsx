@@ -1,12 +1,10 @@
-/* @flow */
-
 import "./Navigation.css";
 import React from "react";
 import NavigationItem from "./NavigationItem";
 import { Subreddit } from "./types";
 
 type Props = {
-  activeUrl: ?string,
+  activeUrl: string | null,
   items: Array<Subreddit>,
   itemSelected: (item: Subreddit) => void,
 };

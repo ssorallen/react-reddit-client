@@ -1,4 +1,3 @@
-/* @flow */
 import "./App.css";
 import React, { useEffect, useReducer } from "react";
 import { ResponseStories, ResponseSubreddits, Story, Subreddit } from "./types";
@@ -14,7 +13,7 @@ type State = {
   storyItems: Array<Story>,
 
   // Current Subreddit being viewed. Its title is shown at the top of the page
-  selectedSubreddit: ?Subreddit,
+  selectedSubreddit: Subreddit | null,
 };
 
 const initialState = {
@@ -23,7 +22,7 @@ const initialState = {
   storyItems: [],
 };
 
-function reducer(state: State, action): State {
+function reducer(state: State, action: { type: string } & Record<string, any>): State {
   switch (action.type) {
     case "set-navigation-items":
       return {
@@ -49,7 +48,7 @@ function reducer(state: State, action): State {
 // Pending callback name for the stories request. This lives outside the `App` because it assumes
 // only a single `App` is rendered at a given time. This JS module is the scope of this callback
 // name and would need to be changed to support multiple Apps on a given page.
-let storiesCallbackName = null;
+let storiesCallbackName: string | null = null;
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -61,11 +60,13 @@ export default function App() {
     const cbname = `fn${Date.now()}`;
     const script = document.createElement("script");
     script.src = `https://www.reddit.com/reddits.json?jsonp=${cbname}`;
+    // @ts-expect-error
     window[cbname] = (jsonData: ResponseSubreddits) => {
       dispatch({
         payload: jsonData.data.children,
         type: "set-navigation-items",
       });
+      // @ts-expect-error
       delete window[cbname];
       documentHead.removeChild(script);
     };
@@ -81,6 +82,7 @@ export default function App() {
     const cbname = (storiesCallbackName = `fn${Date.now()}`);
     const script = document.createElement("script");
     script.src = `https://www.reddit.com${item.data.url}.json?sort=top&t=month&jsonp=${cbname}`;
+    // @ts-expect-error
     window[cbname] = (jsonData: ResponseStories) => {
       // Use the response only if this is still the latest script to run. If the user clicked
       // another Subreddit in the meantime, the `cbname` will be different and this response should
@@ -96,6 +98,7 @@ export default function App() {
         });
       }
 
+      // @ts-expect-error
       delete window[cbname];
       documentHead.removeChild(script);
     };
@@ -110,7 +113,7 @@ export default function App() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <p className="creator">
         Created by <a href="https://github.com/ssorallen">ssorallen</a>
         <br />
@@ -128,6 +131,6 @@ export default function App() {
         itemSelected={setSelectedItem}
       />
       <StoryList items={state.storyItems} />
-    </React.Fragment>
+    </>
   );
 }
