@@ -12,18 +12,18 @@ export default function StoryList(props: Props) {
     <table>
       <tbody>
         {props.items.map((item) => (
-          <tr key={item.data.id}>
+          <tr className="story" key={item.data.id}>
             <td>
-              <p className="score">{item.data.score}</p>
+              <div className="score">{item.data.score}</div>
             </td>
             <td>
-              <p className="title">
+              <h3 className="title">
                 <a href={item.data.url}>{item.data.title}</a>
-              </p>
-              <p className="author">
-                Posted by{" "}
+              </h3>
+              <div className="author">
+                posted by{" "}
                 <a href={`https://www.reddit.com/user/${item.data.author}`}>{item.data.author}</a>
-              </p>
+              </div>
             </td>
           </tr>
         ))}

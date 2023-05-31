@@ -1,28 +1,32 @@
 .score {
-  font-size: 36px;
+  font-size: 24px;
   margin: 15px;
   color: var(--text-secondary);
 }
 
-.title {
-  font-size: 18px;
+.story > td {
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
-.title a {
+.title {
+  margin: 0;
+}
+
+.title > a {
   color: var(--text-primary);
-  font-weight: bold;
   text-decoration: none;
 }
 
-.title a:hover {
+.title > a:hover {
   text-decoration: underline;
 }
 
-.author a {
+.author > a {
   color: var(--text-secondary);
   text-decoration: none;
 }
 
-.author a:hover {
+.author > a:hover {
   text-decoration: underline;
 }
