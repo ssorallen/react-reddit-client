@@ -24,8 +24,8 @@ https://ssorallen.github.io/react-reddit-client/
 
 ## Framework Comparisons
 
-This demo was originally created by the Montage team, and that version is linked below. The demo was
-recreated in other frameworks to compare various approaches in JavaScript app frameworks.
+This demo was originally created by the Montage team, but its link has been removed because
+Montage is defunct at time of writing in May 2023. The demo was recreated in Polymer to
+compare a small app in both Polymer and in React.
 
-* [Montage](http://docs.montagestudio.com/montagejs/tutorial-reddit-client-with-montagejs.html)
 * [Polymer](https://github.com/ssorallen/polymer-reddit-client)
