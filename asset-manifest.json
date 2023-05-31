@@ -1,6 +1,13 @@
 {
-  "main.css": "static/css/main.d33bc548.css",
-  "main.css.map": "static/css/main.d33bc548.css.map",
-  "main.js": "static/js/main.3c6354fe.js",
-  "main.js.map": "static/js/main.3c6354fe.js.map"
+  "files": {
+    "main.css": "/react-reddit-client/static/css/main.27bbb12a.css",
+    "main.js": "/react-reddit-client/static/js/main.855e26d8.js",
+    "index.html": "/react-reddit-client/index.html",
+    "main.27bbb12a.css.map": "/react-reddit-client/static/css/main.27bbb12a.css.map",
+    "main.855e26d8.js.map": "/react-reddit-client/static/js/main.855e26d8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.27bbb12a.css",
+    "static/js/main.855e26d8.js"
+  ]
 }
