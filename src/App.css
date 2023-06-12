@@ -21,9 +21,7 @@ h1 {
 .creator {
   border-right: 5px solid #4e5053;
   color: var(--text-secondary);
-  float: right;
   font-size: 0.85rem;
-  margin-top: 0;
   padding-right: 5px;
   text-align: right;
   transition: color 250ms, border-right-width 250ms;

@@ -1,5 +1,7 @@
+import "bootstrap/dist/css/bootstrap.css";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import App, { loader } from "./App";
+import ErrorPage from "./ErrorPage";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import StoryList, { loader as storyListLoader } from "./StoryList";
@@ -11,11 +13,13 @@ const router = createHashRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     loader,
     children: [
       {
         path: "/r/:subreddit",
         element: <StoryList />,
+        errorElement: <ErrorPage />,
         id: "subreddit",
         loader: ({ params }) => storyListLoader(params.subreddit),
       },
