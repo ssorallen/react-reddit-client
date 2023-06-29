@@ -77,7 +77,7 @@ function Story({ story }: { story: reddit.Story }) {
 
   return (
     <li className="row py-1">
-      <div className="col-md-1 d-flex align-items-center justify-content-end">
+      <div className="col-md-1 d-flex align-items-center justify-content-end score">
         {story.data.score}
       </div>
       <div className="col-md-11">
