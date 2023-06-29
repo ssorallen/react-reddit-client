@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom";
-import React from "react";
-import { Subreddit } from "./types";
+import { reddit } from "./types";
 
 type Props = {
-  item: Subreddit;
+  item: reddit.Subreddit;
 };
 
 export default function NavigationItem({ item }: Props) {

@@ -1,10 +1,9 @@
 import "./App.css";
 import { Outlet, ScrollRestoration, json, useLoaderData, useParams } from "react-router-dom";
-import React from "react";
-import { ResponseSubreddits, Subreddit } from "./types";
+import { reddit } from "./types";
 import Navigation from "./Navigation";
 
-export async function loader(): Promise<{ subreddits: Array<Subreddit> }> {
+export async function loader(): Promise<{ subreddits: Array<reddit.Subreddit> }> {
   return new Promise((resolve, reject) => {
     const documentHead = document.head;
     if (documentHead == null) {
@@ -16,7 +15,7 @@ export async function loader(): Promise<{ subreddits: Array<Subreddit> }> {
     const script = document.createElement("script");
 
     function removeScript() {
-      // @ts-expect-error
+      // @ts-expect-error Removing dynamic property from `window`.
       delete window[cbname];
       documentHead.removeChild(script);
     }
@@ -32,21 +31,21 @@ export async function loader(): Promise<{ subreddits: Array<Subreddit> }> {
       removeScript();
     };
 
-    // @ts-expect-error
-    window[cbname] = (jsonData: ResponseSubreddits) => {
+    // @ts-expect-error Adding dynamic property to `window`.
+    window[cbname] = (jsonData: reddit.ResponseSubreddits) => {
       resolve({
         subreddits: jsonData.data.children,
       });
       removeScript();
     };
 
-    // Start the JSONP request by injecting the `script` into the document.
+    // Start the JSONP request by injecting the <script> into the document head.
     documentHead.appendChild(script);
   });
 }
 
 export default function App() {
-  const { subreddits } = useLoaderData() as { subreddits: Array<Subreddit> };
+  const { subreddits } = useLoaderData() as { subreddits: Array<reddit.Subreddit> };
   const params = useParams();
 
   let selectedSubreddit;

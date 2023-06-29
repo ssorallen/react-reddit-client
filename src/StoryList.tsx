@@ -1,14 +1,20 @@
 import "./StoryList.css";
+import en from "javascript-time-ago/locale/en";
 import { json, useLoaderData } from "react-router-dom";
-import React from "react";
-import { Story } from "./types";
+import { reddit } from "./types";
+import TimeAgo from "javascript-time-ago";
 
 // Pending callback name for the stories request. This lives outside the `App` because it assumes
 // only a single `App` is rendered at a given time. This JS module is the scope of this callback
 // name and would need to be changed to support multiple Apps on a given page.
 let storiesCallbackName: string | null = null;
 
-export async function loader(subreddit: string | undefined): Promise<{ stories: Array<Story> }> {
+// TODO: Support dynamic locale. All "time ago" statements will be in English for now.
+TimeAgo.addDefaultLocale(en);
+
+export async function loader(
+  subreddit: string | undefined
+): Promise<{ stories: Array<reddit.Story> }> {
   return new Promise((resolve, reject) => {
     if (subreddit == null) {
       reject(new Error("No subreddit to load stories for."));
@@ -24,7 +30,7 @@ export async function loader(subreddit: string | undefined): Promise<{ stories: 
     const script = document.createElement("script");
 
     function removeScript() {
-      // @ts-expect-error
+      // @ts-expect-error Removing dynamic property from `window`.
       delete window[cbname];
       documentHead.removeChild(script);
     }
@@ -40,7 +46,7 @@ export async function loader(subreddit: string | undefined): Promise<{ stories: 
     };
     script.src = `https://www.reddit.com/r/${subreddit}.json?sort=top&t=month&jsonp=${cbname}`;
 
-    // @ts-expect-error
+    // @ts-expect-error Adding dynamic property to `window`.
     window[cbname] = (jsonData: ResponseStories) => {
       // Use the response only if this is still the latest script to run. If the user clicked
       // another Subreddit in the meantime, the `cbname` will be different and this response should
@@ -57,31 +63,46 @@ export async function loader(subreddit: string | undefined): Promise<{ stories: 
       removeScript();
     };
 
-    // Start the JSONP request by setting the `src` of the injected script.
+    // Start the JSONP request by injecting the <script> into the document head.
     documentHead.appendChild(script);
   });
 }
 
+function Story({ story }: { story: reddit.Story }) {
+  const timeAgo = new TimeAgo("en-US");
+
+  // Reddit dates are seconds since epoch, but JS dates are milliseconds since epoch; multiply by
+  // 1000 to convert.
+  const createdDateUtc = new Date(story.data.created_utc * 1000);
+
+  return (
+    <li className="row py-1">
+      <div className="col-md-1 d-flex align-items-center justify-content-end">
+        {story.data.score}
+      </div>
+      <div className="col-md-11">
+        <h3 className="title">
+          <a href={story.data.url}>{story.data.title}</a>
+        </h3>
+        <div className="author">
+          posted by{" "}
+          <a href={`https://www.reddit.com/user/${story.data.author}`}>u/{story.data.author}</a>{" "}
+          <time dateTime={createdDateUtc.toLocaleString()} title={createdDateUtc.toLocaleString()}>
+            {timeAgo.format(createdDateUtc)}
+          </time>
+        </div>
+      </div>
+    </li>
+  );
+}
+
 export default function StoryList() {
-  const { stories } = useLoaderData() as { stories: Array<Story> };
+  const { stories } = useLoaderData() as { stories: Array<reddit.Story> };
 
   return (
     <ul className="list-unstyled">
       {stories.map((story) => (
-        <li className="row py-1" key={story.data.id}>
-          <div className="col-md-1 d-flex align-items-center justify-content-end score">
-            {story.data.score}
-          </div>
-          <div className="col-md-11">
-            <h3 className="title">
-              <a href={story.data.url}>{story.data.title}</a>
-            </h3>
-            <div className="author">
-              posted by{" "}
-              <a href={`https://www.reddit.com/user/${story.data.author}`}>{story.data.author}</a>
-            </div>
-          </div>
-        </li>
+        <Story key={story.data.id} story={story} />
       ))}
     </ul>
   );
