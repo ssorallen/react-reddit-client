@@ -8,12 +8,12 @@
   margin: 0;
 }
 
-.title > a {
+.title>a {
   color: var(--text-primary);
   text-decoration: none;
 }
 
-.title > a:hover {
+.title>a:hover {
   text-decoration: underline;
 }
 
@@ -21,10 +21,15 @@
   color: var(--text-secondary);
 }
 
-.author > a {
+.author>a {
   text-decoration: none;
 }
 
-.author > a:hover {
+.author>a:hover {
   text-decoration: underline;
+}
+
+.story-list__loading {
+  color: var(--text-secondary);
+  font-style: italic;
 }
